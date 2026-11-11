@@ -1,0 +1,26 @@
+{
+  "id": "./",
+  "name": "ระบบติดตามทรัพยากรและพลังงาน · Green Somdej",
+  "short_name": "ทรัพยากร รพ.",
+  "description": "ติดตามการใช้น้ำ ไฟฟ้า กระดาษ น้ำมันเชื้อเพลิง และก๊าซเรือนกระจก รพ.สมเด็จพระบรมราชเทวี ณ ศรีราชา (สำนักงานสีเขียว)",
+  "lang": "th",
+  "dir": "ltr",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#051634",
+  "theme_color": "#051634",
+  "categories": ["productivity", "medical", "utilities"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "แดชบอร์ดทรัพยากรและพลังงาน", "short_name": "แดชบอร์ด", "url": "./#dashboard", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "บันทึกน้ำมันรถ", "short_name": "บันทึกน้ำมัน", "url": "./#fuel", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "ภาพรวมล่าสุดแบบเต็มจอ", "short_name": "ภาพรวม", "url": "./#summary", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

@@ -10,7 +10,15 @@
 <meta name="theme-color" content="#051634">
 <meta property="og:title" content="green-re · Green Somdej">
 <meta property="og:description" content="ติดตามทรัพยากรและพลังงานของโรงพยาบาลในที่เดียว">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230b5fae'/%3E%3Cpath d='M9 23c0-8 5-13 14-13 0 8-5 13-13 13M9 23l7-7' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<!-- ติดตั้งเป็นแอป (PWA) ชุดไอคอนเดียวกับ green-env -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ทรัพยากร รพ.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700&family=Prompt:wght@400;500;600&display=swap" rel="stylesheet">
@@ -130,7 +138,25 @@
   @keyframes spin{ to{ transform:rotate(360deg); } }
   .art .leaf-g{ transform-box:fill-box; transform-origin:20% 90%; animation:sway 7s ease-in-out infinite; }
   @keyframes sway{ 50%{ transform:rotate(-3deg); } }
-  .art .vein{ stroke:#0a2f6b; stroke-width:5; stroke-linecap:round; fill:none; opacity:.85; }
+  .art .core{ fill:#ffffff; fill-opacity:.92; filter:drop-shadow(0 22px 34px rgba(0,0,0,.4)); }
+  .art .award-tag{ filter:drop-shadow(0 8px 14px rgba(0,0,0,.3)); }
+  .art .award-tag rect{ fill:url(#awardg); }
+  .art .award-tag text{ fill:#3b2600; font-family:var(--font-head); }
+  .art .award-tag .t1{ font-size:14px; font-weight:600; } .art .award-tag .t2{ font-size:11.5px; font-weight:500; font-family:var(--font-body); }
+  /* ติดตั้งเป็นแอป */
+  .logo img.logo-mark{ background:none; object-fit:cover; }
+  .btn[hidden]{ display:none; }
+  .install{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media (max-width:820px){ .install{ grid-template-columns:1fr; } }
+  .install .card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:26px; box-shadow:var(--shadow); }
+  .install h3{ font-size:1.2rem; display:flex; gap:10px; align-items:center; }
+  .install ol{ margin:12px 0 0; padding-left:1.3em; color:var(--muted); }
+  .install ol li{ margin:8px 0; }
+  .install kbd{ display:inline-block; border:1px solid var(--line); border-bottom-width:2px; border-radius:6px; padding:0 6px; font:500 .85rem var(--font-body); background:var(--bg); color:var(--ink); }
+  .install .now{ margin-top:16px; }
+  .note{ border-radius:14px; padding:12px 16px; background:var(--brand-soft); color:var(--ink); font-size:.95rem; margin-top:16px; }
+  .note.ok{ background:color-mix(in srgb, #22c55e 18%, var(--surface)); }
+  .note[hidden]{ display:none; }
   .art .float{ animation:float 6s ease-in-out infinite; transform-box:fill-box; transform-origin:center; }
   .art > g:nth-of-type(2n) .float{ animation-delay:-3s; }
   @keyframes float{ 50%{ transform:translateY(-9px); } }
@@ -312,13 +338,14 @@
 <header class="top" id="top">
   <div class="wrap">
     <a class="logo" href="#main" aria-label="green-re หน้าแรก">
-      <span class="logo-mark"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></span>
+      <img class="logo-mark" src="icons/icon-192.png" alt="" width="38" height="38">
       <span>green-re<small>Green Somdej · QSMH</small></span>
     </a>
     <nav class="nav" aria-label="เมนูหลัก">
       <a href="#overview">ภาพรวมล่าสุด</a>
       <a href="#features">ทำอะไรได้บ้าง</a>
       <a href="#how">วิธีใช้</a>
+      <a href="#install">ติดตั้งแอป</a>
       <a href="#faq">คำถามที่พบบ่อย</a>
     </nav>
     <a class="btn btn-primary btn-sm" data-link="app" href="#dashboard"><span><span class="long">เข้า</span>แดชบอร์ด</span><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
@@ -338,6 +365,7 @@
         <div class="cta rise" style="--d:.4s">
           <a class="btn btn-primary" data-link="app" href="#dashboard">เข้าสู่แดชบอร์ด<svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
           <a class="btn btn-ghost" href="#overview">ดูภาพรวมล่าสุด<svg class="ic" aria-hidden="true"><use href="#i-down"/></svg></a>
+          <button class="btn btn-ghost" type="button" data-install>📲 ติดตั้งเป็นแอป</button>
         </div>
         <ul class="assure rise" style="--d:.52s">
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>ใช้ได้ทั้งคอมพิวเตอร์และมือถือ</li>
@@ -345,13 +373,18 @@
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg>ข้อมูลอัปเดตจากระบบอัตโนมัติ</li>
         </ul>
       </div>
-      <svg class="art pop" viewBox="0 0 440 440" role="img" aria-label="ภาพประกอบ: ใบไม้ล้อมรอบด้วยไอคอนน้ำ ไฟฟ้า กระดาษ น้ำมัน และก๊าซเรือนกระจก">
-        <defs><linearGradient id="leafg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#7dd3fc"/><stop offset="1" stop-color="#ffffff"/></linearGradient></defs>
+      <svg class="art pop" viewBox="0 0 440 440" role="img" aria-label="ถ้วยรางวัลสำนักงานสีเขียว (Green Office) ระดับดีเยี่ยม ปี 2568 ของโรงพยาบาล ล้อมรอบด้วยไอคอนน้ำ ไฟฟ้า กระดาษ น้ำมัน และก๊าซเรือนกระจก">
+        <defs>
+          <clipPath id="trophy-clip"><circle cx="220" cy="220" r="129"/></clipPath>
+          <linearGradient id="awardg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fde047"/><stop offset="1" stop-color="#f59e0b"/></linearGradient>
+        </defs>
         <circle class="disc" cx="220" cy="220" r="150"/>
         <circle class="ring" cx="220" cy="220" r="150"/>
         <g class="spin"><circle class="orbit" cx="220" cy="220" r="190"/></g>
-        <g class="leaf-g"><path class="leaf" fill="url(#leafg)" d="M140 300c0-104 70-170 172-170 0 110-68 172-160 172z"/>
-        <path class="vein" d="M146 296 262 180M196 248h48M222 222v-42"/></g>
+        <!-- ถ้วยรางวัล Green Office (แบบเดียวกับ green-env): อัปโหลด trophy.jpg คู่กับ index.html -->
+        <circle class="core" cx="220" cy="220" r="135"/>
+        <image href="trophy.jpg" x="91" y="91" width="258" height="258" preserveAspectRatio="xMidYMid slice" clip-path="url(#trophy-clip)"/>
+        <g class="award-tag" transform="translate(220 372)"><rect x="-76" y="-24" width="152" height="48" rx="14"/><text y="-4" text-anchor="middle" class="t1">🏆 Green Office</text><text y="14" text-anchor="middle" class="t2">ระดับดีเยี่ยม ปี 2568</text></g>
         <g transform="translate(220 30)"><g class="badge float"><circle r="36" stroke-width="1.5"/><svg x="-17" y="-17" width="34" height="34" class="ic c-water"><use href="#i-water"/></svg></g></g>
         <g transform="translate(400 170)"><g class="badge float"><circle r="36" stroke-width="1.5"/><svg x="-17" y="-17" width="34" height="34" class="ic c-bolt"><use href="#i-bolt"/></svg></g></g>
         <g transform="translate(332 384)"><g class="badge float"><circle r="36" stroke-width="1.5"/><svg x="-17" y="-17" width="34" height="34" class="ic c-paper"><use href="#i-paper"/></svg></g></g>
@@ -460,6 +493,27 @@
     </div>
   </section>
 
+  <!-- ============ ติดตั้งเป็นแอป ============ -->
+  <section id="install" aria-labelledby="ins-title">
+    <div class="wrap">
+      <div class="sec-head"><div><span class="eyebrow">ไอคอนบนหน้าจอ</span><h2 id="ins-title">ติดตั้งเป็นแอปบนมือถือ</h2>
+        <p class="desc">ติดตั้งครั้งเดียว ไอคอนจะอยู่บนหน้าจอเหมือนแอปทั่วไป เปิดแล้วเต็มจอ ไม่ต้องโหลดจาก Play Store / App Store และอัปเดตเองทุกครั้งที่เปิด</p></div></div>
+      <div class="install">
+        <div class="card" id="ins-android">
+          <h3><span aria-hidden="true">🤖</span> Android (Chrome)</h3>
+          <ol><li>เปิดหน้านี้ด้วย <b>Chrome</b></li><li>กดปุ่ม <b>📲 ติดตั้งเป็นแอป</b> ด้านล่าง หรือกดเมนู <kbd>⋮</kbd> → <b>ติดตั้งแอป</b> / <b>เพิ่มลงในหน้าจอหลัก</b></li><li>กด <b>ติดตั้ง</b> ไอคอน “ทรัพยากร รพ.” จะขึ้นบนหน้าจอ</li></ol>
+          <div class="now"><button class="btn btn-primary" type="button" data-install>📲 ติดตั้งเป็นแอป</button></div>
+        </div>
+        <div class="card" id="ins-ios">
+          <h3><span aria-hidden="true">🍎</span> iPhone / iPad (Safari)</h3>
+          <ol><li>เปิดหน้านี้ด้วย <b>Safari</b> (iOS ไม่ให้แอปอื่นติดตั้ง)</li><li>กดปุ่มแชร์ <kbd>⬆︎</kbd> ด้านล่างจอ</li><li>เลื่อนหา <b>เพิ่มไปยังหน้าจอโฮม</b> → กด <b>เพิ่ม</b></li></ol>
+          <p class="note">คอมพิวเตอร์ (Chrome/Edge) ก็ติดตั้งได้: กดไอคอน <kbd>⊕</kbd> ท้ายช่องที่อยู่เว็บ</p>
+        </div>
+      </div>
+      <div class="note ok" id="installed-note" hidden>✅ เครื่องนี้ติดตั้งแอปแล้ว เปิดจากไอคอนบนหน้าจอได้เลย</div>
+    </div>
+  </section>
+
   <!-- ============ คำถาม ============ -->
   <section id="faq" aria-labelledby="faq-title">
     <div class="wrap">
@@ -489,7 +543,7 @@
 <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-labelledby="viewer-title" hidden>
   <div class="viewer-bar">
     <a class="logo" href="#" data-close aria-label="green-re กลับหน้าแรก">
-      <span class="logo-mark"><svg class="ic" aria-hidden="true"><use href="#i-leaf"/></svg></span>
+      <img class="logo-mark" src="icons/icon-192.png" alt="" width="38" height="38">
       <span>green-re<small>Green Somdej · QSMH</small></span>
     </a>
     <span class="vt" id="viewer-title">แดชบอร์ด</span>
@@ -666,6 +720,29 @@ const CONFIG = {
   const top = $('#top');
   const onScroll = () => top.classList.toggle('scrolled', window.scrollY > 8);
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // ---------- ติดตั้งเป็นแอป (แบบเดียวกับ green-env) ----------
+  let deferred = null;
+  const standalone = () => matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: minimal-ui)').matches || navigator.standalone === true;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  function syncInstall() {
+    const inst = standalone();
+    $('#installed-note').hidden = !inst;
+    $$('[data-install]').forEach(b => { b.hidden = inst; });
+    if (isIOS) { const i = $('#ins-ios'), a = $('#ins-android'); if (i && a && i.previousElementSibling === a) a.before(i); }
+  }
+  window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; });
+  window.addEventListener('appinstalled', () => { deferred = null; syncInstall(); $('#installed-note').hidden = false; });
+  $$('[data-install]').forEach(b => b.addEventListener('click', async () => {
+    if (deferred) { deferred.prompt(); try { await deferred.userChoice; } catch (e) {} deferred = null; syncInstall(); return; }
+    $('#install').scrollIntoView({ behavior: 'smooth' });
+    const target = isIOS ? $('#ins-ios') : $('#ins-android');
+    if (target.animate) target.animate([{ boxShadow: '0 0 0 0 rgba(56,189,248,.8)' }, { boxShadow: '0 0 0 14px rgba(56,189,248,0)' }], { duration: 1200, iterations: 2 });
+  }));
+  syncInstall();
+  if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+  }
 })();
 </script>
 </body>
